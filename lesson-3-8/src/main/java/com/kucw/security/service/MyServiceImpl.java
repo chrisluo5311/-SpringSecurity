@@ -2,6 +2,8 @@ package com.kucw.security.service;
 
 import com.kucw.security.dao.MyDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,15 +12,20 @@ public class MyServiceImpl implements MyService {
     @Autowired
     private MyDao myDao;
 
+    //只有使用者有ADMIN角色才可以運行getMovie的程式
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public String getMovie() {
         System.out.println("執行 MyService 的 getMovie 方法");
+
 
         myDao.getMovie();
 
         return "成功取得電影";
     }
 
+    //只有使用者有ADMIN角色才可以取得return值，方法則是會執行
+    @PostAuthorize("hasRole('ADMIN')")
     @Override
     public String deleteMovie() {
         System.out.println("執行 MyService 的 deleteMovie 方法");
