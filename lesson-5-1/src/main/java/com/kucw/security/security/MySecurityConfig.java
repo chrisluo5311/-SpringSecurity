@@ -9,10 +9,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class MySecurityConfig {
 
     @Bean
@@ -43,9 +42,6 @@ public class MySecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .anyRequest().authenticated()
                 )
-
-                //MyFilter1的執行順序是在 BasicAuthenticationFilter 的前面
-                .addFilterBefore(new MyFilter1(), BasicAuthenticationFilter.class)
 
                 .build();
     }
