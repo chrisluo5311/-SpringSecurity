@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+  <head><script type="text/javascript" nonce="808050936ced4ebdabeb3cabad4" src="//local.adguard.org?ts=1725208583861&amp;type=content-script&amp;dmn=storage.googleapis.com&amp;url=https%3A%2F%2Fstorage.googleapis.com%2Fhh-asset-prod%2F65b94cb1c987ff9971dd64f6%3FGoogleAccessId%3Dhh-backend%2540cool-wharf-784.iam.gserviceaccount.com%26Expires%3D1725298956%26Signature%3DSXZS1aXixz6yrb2JwD90CxodTS8syEwTEmuA%252B%252BmsxGdcZaRQ6o0o%252FOMuGkPNEhRQydd41TpJKBkmiBffJJm1FAFr5YfI6tvFO6UIS1UrZxee%252BDM7mnWGQxeRZzUj9dslG8gAfOUdOk4TuZDZFWCQPBu%252FNNjsUdP6y2KwBrSWP3OSmsRS%252B%252FNPLzmdD23tNyEm%252B11Hrxx7M6PZ2AGYHU%252FkP3M5rBsHC2kTezAxJ4EViOCk0ahgbp45mt55egYSf%252B1K0rfuVdiIQHZg%252BwJ8bOJUn1opPzW3jnI44qUfOtBly7sMLwaMHsrm%252Bkbmc1LsXrRmZVP7ag8FWgdlvUgUfjtBmg%253D%253D%26response-content-disposition%3Dattachment%253B%2520filename%253D%2522cors-demo.html%2522&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-push&amp;st-loc&amp;st-java&amp;st-dnt"></script>
+<script type="text/javascript" nonce="808050936ced4ebdabeb3cabad4" src="//local.adguard.org?ts=1725208583861&amp;name=AdGuard%20Assistant&amp;name=Web%20of%20Trust&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
+
+  <body>
+    <h3>這是前端開發的 demo 頁面</h3>
+
+    <p>API 返回結果為：</p>
+    <p id="output"></p>
+  </body>
+  
+  <script>
+    // 指定 http method 和 url
+    const method = "GET";
+    const url = "http://localhost:8080/hello";
+
+    // 前端發出 http request 請求
+    const http = new XMLHttpRequest();
+    http.open(method, url);
+
+    http.setRequestHeader("Authorization", "Basic dGVzdDE6MTEx")
+    // http.withCredentials = true;
+
+    http.send();
+    http.onreadystatechange = (e) => {
+      if (http.status === 200) {
+        document.getElementById("output").innerHTML = http.responseText;
+        document.getElementById("output").style.backgroundColor = "#18C5A6";
+      } else {
+        document.getElementById("output").innerHTML = "請求失敗";
+        document.getElementById("output").style.backgroundColor = "#FD3C3C";
+      }
+    }
+  </script>
+
+</html>
