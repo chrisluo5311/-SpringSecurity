@@ -9,6 +9,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -43,6 +48,27 @@ public class MySecurityConfig {
                         .anyRequest().authenticated()
                 )
 
+                .cors(cors -> cors
+                        .configurationSource(createCorsConfig())
+                )
+
                 .build();
+    }
+
+    private CorsConfigurationSource createCorsConfig() {
+        CorsConfiguration config = new CorsConfiguration();
+        //表示後端允許的請求來源有哪些(*表所有來源)
+        config.setAllowedOrigins(List.of("*"));
+        //表示後端允許的request header有哪些
+        config.setAllowedHeaders(List.of("*"));
+        //表示後端允許的http method有哪些
+        config.setAllowedOrigins(List.of("*"));
+//        config.setAllowCredentials(true);
+        config.setMaxAge(3600L);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**",config);
+
+        return source;
     }
 }
