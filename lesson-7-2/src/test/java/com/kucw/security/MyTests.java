@@ -23,7 +23,7 @@ public class MyTests {
     public void testHello() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/hello")
-                        .header("Authorization","Basic dGVzdDFAZ21haWwuY29tOjExMQ==");
+                .header("Authorization","Basic dGVzdDFAZ21haWwuY29tOjExMQ==");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200));
