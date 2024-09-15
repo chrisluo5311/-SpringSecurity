@@ -3,6 +3,7 @@ package com.kucw.security.security;
 import com.kucw.security.dao.MemberDao;
 import com.kucw.security.model.Member;
 import com.kucw.security.model.Role;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Component
 public class MyUserDetailsService implements UserDetailsService {
 
@@ -49,6 +51,7 @@ public class MyUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role : roleList) {
+            log.info("擁有Role: {}", role.getRoleName());
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         }
 
