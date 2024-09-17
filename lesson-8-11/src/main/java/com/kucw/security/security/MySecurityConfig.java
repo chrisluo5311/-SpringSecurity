@@ -34,6 +34,7 @@ public class MySecurityConfig {
                 .csrf(csrf -> csrf.disable())
 
                 // 添加客製化的 Filter
+                // BasicAuthenticationFilter 是　Http Basic 認證
                 .addFilterBefore(new MyFilter(), BasicAuthenticationFilter.class)
 
                 // 設定 Http Basic 認證和表單認證
