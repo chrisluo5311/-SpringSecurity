@@ -76,10 +76,11 @@ public class MySecurityConfig {
 
     private CorsConfigurationSource createCorsConfig() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://example.com"));
+        //參考5-2, 5-3
+        config.setAllowedOrigins(List.of("http://example.com"));//只允許來自http://example.com的請求
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(List.of("*"));
-        config.setAllowCredentials(true);
+        config.setAllowCredentials(true);//允許前端帶上Cookie的資訊
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
