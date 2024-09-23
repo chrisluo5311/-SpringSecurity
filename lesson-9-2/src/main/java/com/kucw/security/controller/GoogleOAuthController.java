@@ -94,7 +94,7 @@ public class GoogleOAuthController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
-//        headers.setBearerAuth(accessToken);
+//        headers.setBearerAuth(accessToken);//這個寫法結果同上
 
         // call Google 的 api，取得使用者在 Google 中的基本資料
         String url = "https://www.googleapis.com/oauth2/v2/userinfo";
